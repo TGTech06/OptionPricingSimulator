@@ -18,7 +18,6 @@ def show_comparison_page():
     - **Volatility Impact**: See how each model handles changes in market volatility.
     - **Time to Maturity**: Observe the differences in pricing with varying times to maturity.
     - **Interest Rate Sensitivity**: Analyze the effect of different risk-free rates on option prices.
-
     """)
 
     # Inputs for comparison on the left
@@ -56,7 +55,12 @@ def show_comparison_page():
             'Call Price': call_prices.values(),
             'Put Price': put_prices.values()
         })
-        st.dataframe(prices_df.style.format({'Call Price': '${:,.2f}', 'Put Price': '${:,.2f}'}))
+
+        # Remove index, set larger font, bold headers, and fill available space
+        st.table(prices_df.style.format({'Call Price': '${:,.2f}', 'Put Price': '${:,.2f}'})
+                  .set_properties(**{'font-size': '18pt'})
+                  .set_table_styles([{'selector': 'thead th', 'props': [('font-size', '20pt'), ('font-weight', 'bold')]}])
+        )
 
     # Graph comparison: Call prices vs. Volatility
     volatilities = np.linspace(0.01, 1.0, 50)
@@ -77,7 +81,8 @@ def show_comparison_page():
         title="Call Option Prices vs. Volatility",
         xaxis_title="Volatility (σ)",
         yaxis_title="Call Option Price",
-        height=500,
+        height=600,  # Increase graph height
+        width=1000,  # Increase graph width
         legend_title="Models"
     )
 
@@ -99,29 +104,13 @@ def show_comparison_page():
         title="Put Option Prices vs. Volatility",
         xaxis_title="Volatility (σ)",
         yaxis_title="Put Option Price",
-        height=500,
+        height=600,  # Increase graph height
+        width=1000,  # Increase graph width
         legend_title="Models"
     )
 
     st.plotly_chart(fig_call)
     st.plotly_chart(fig_put)
 
-    # Explanation of key differences and why prices differ between models
-    st.markdown("""
-    ### Explanation of Price Differences:
-
-    - **Black-Scholes Model**: This model assumes constant volatility, which can result in relatively stable prices. It is computationally efficient but may not handle real-world volatility well.
-
-    - **Binomial Model**: The binomial model uses a discrete time-step approach. It tends to provide similar prices to Black-Scholes but is more flexible for American options, where early exercise is allowed.
-
-    - **Monte Carlo Simulation**: Monte Carlo generates prices using random sampling, making it more flexible in volatile conditions. However, it is computationally intensive and may produce different results depending on the number of simulations.
-
-    - **Heston Model**: The Heston model accounts for stochastic volatility, making it more adaptive to real-world market conditions where volatility varies. This often results in different prices compared to models assuming constant volatility.
-
-    - **Bachelier Model**: Bachelier assumes a normal distribution for prices, which is better suited to low-volatility or mean-reverting markets. Prices from this model can differ significantly from the others, especially in high-volatility scenarios.
-
-    These differences in assumptions and flexibility result in varying prices across the models, especially when dealing with volatility and time to maturity.
-    """)
-
 # Run the comparison page
-show_comparison_page()
+# show_comparison_page()

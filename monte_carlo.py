@@ -153,4 +153,4 @@ def show_monte_carlo_page():
     )
 
 # Run the Monte Carlo model page
-show_monte_carlo_page()
+# show_monte_carlo_page()

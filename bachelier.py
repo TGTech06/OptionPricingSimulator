@@ -148,4 +148,4 @@ def show_bachelier_page():
     )
 
 # Run the Bachelier model page
-show_bachelier_page()
+# show_bachelier_page()
