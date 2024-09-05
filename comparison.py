@@ -31,31 +31,32 @@ def show_comparison_page():
         r = st.slider("Risk-Free Rate (r)", min_value=0.0, max_value=0.2, value=0.05, step=0.001)
         sigma = st.slider("Volatility (σ)", min_value=0.01, max_value=1.0, value=0.2, step=0.01)
 
-    # Calculate prices for both call and put options for each model
-    call_prices = {
-        'Black-Scholes': black_scholes(S0, X, T, r, sigma, 'call'),
-        'Binomial': binomial_option_pricing(S0, X, T, r, sigma, 100, 'call'),
-        'Monte Carlo': monte_carlo_option_pricing(S0, X, T, r, sigma, 10000, 'call'),
-        'Heston': heston_price(S0, X, T, r, 2.0, 0.04, sigma, -0.7, sigma**2, 'call'),
-        'Bachelier': bachelier_option_pricing(S0, X, T, r, sigma, 'call')
-    }
+    with col2:
+        # Calculate prices for both call and put options for each model
+        call_prices = {
+            'Black-Scholes': black_scholes(S0, X, T, r, sigma, 'call'),
+            'Binomial': binomial_option_pricing(S0, X, T, r, sigma, 100, 'call'),
+            'Monte Carlo': monte_carlo_option_pricing(S0, X, T, r, sigma, 10000, 'call'),
+            'Heston': heston_price(S0, X, T, r, 2.0, 0.04, sigma, -0.7, sigma**2, 'call'),
+            'Bachelier': bachelier_option_pricing(S0, X, T, r, sigma, 'call')
+        }
 
-    put_prices = {
-        'Black-Scholes': black_scholes(S0, X, T, r, sigma, 'put'),
-        'Binomial': binomial_option_pricing(S0, X, T, r, sigma, 100, 'put'),
-        'Monte Carlo': monte_carlo_option_pricing(S0, X, T, r, sigma, 10000, 'put'),
-        'Heston': heston_price(S0, X, T, r, 2.0, 0.04, sigma, -0.7, sigma**2, 'put'),
-        'Bachelier': bachelier_option_pricing(S0, X, T, r, sigma, 'put')
-    }
+        put_prices = {
+            'Black-Scholes': black_scholes(S0, X, T, r, sigma, 'put'),
+            'Binomial': binomial_option_pricing(S0, X, T, r, sigma, 100, 'put'),
+            'Monte Carlo': monte_carlo_option_pricing(S0, X, T, r, sigma, 10000, 'put'),
+            'Heston': heston_price(S0, X, T, r, 2.0, 0.04, sigma, -0.7, sigma**2, 'put'),
+            'Bachelier': bachelier_option_pricing(S0, X, T, r, sigma, 'put')
+        }
 
-    # Display prices in a table
-    st.markdown("### Option Prices (Call and Put)")
-    prices_df = pd.DataFrame({
-        'Model': call_prices.keys(),
-        'Call Price': call_prices.values(),
-        'Put Price': put_prices.values()
-    })
-    st.table(prices_df)
+        # Display prices in a table beside inputs
+        st.markdown("### Option Prices")
+        prices_df = pd.DataFrame({
+            'Model': call_prices.keys(),
+            'Call Price': call_prices.values(),
+            'Put Price': put_prices.values()
+        })
+        st.dataframe(prices_df.style.format({'Call Price': '${:,.2f}', 'Put Price': '${:,.2f}'}))
 
     # Graph comparison: Call prices vs. Volatility
     volatilities = np.linspace(0.01, 1.0, 50)
