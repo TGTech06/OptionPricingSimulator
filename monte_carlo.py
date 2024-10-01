@@ -149,7 +149,7 @@ def show_monte_carlo_page():
 
     # Link to Monte Carlo method paper with more spacing
     st.markdown(
-        "[Learn more about the Monte Carlo method](https://en.wikipedia.org/wiki/Monte_Carlo_method)"
+        "[Learn more about the Monte Carlo method](https://en.wikipedia.org/wiki/Monte_Carlo_method)",
         "[Read the original paper here](https://www.ressources-actuarielles.net/EXT/ISFA/1226.nsf/0/3741c4b04ff70a29c125809300569439/$FILE/1976_Options_A_Monte_Carlo_Approach.pdf)"
     )
 
