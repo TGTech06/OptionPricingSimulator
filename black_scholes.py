@@ -132,7 +132,7 @@ def show_black_scholes_page():
 
     # Link to full Black-Scholes paper with more spacing
     st.markdown(
-         "[Learn more about the Black Scholes Model](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model)",
+         "[Learn more about the Black Scholes Model](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model)\n\n"
         "[Read the full Black-Scholes paper here](https://www.cs.princeton.edu/courses/archive/fall09/cos323/papers/black_scholes73.pdf)"
     )
 
