@@ -159,6 +159,7 @@ def show_heston_page():
     # Link to more information about the Heston model
     st.markdown(
         "[Learn more about the Heston model](https://en.wikipedia.org/wiki/Heston_model)"
+        "[Read the original paper here](https://www.ma.imperial.ac.uk/~ajacquie/IC_Num_Methods/IC_Num_Methods_Docs/Literature/Heston.pdf)"
     )
 
 # Run the Heston model page

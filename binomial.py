@@ -159,6 +159,7 @@ def show_binomial_page():
     # Link to Binomial method explanation with more spacing
     st.markdown(
         "[Learn more about the Binomial option pricing model](https://en.wikipedia.org/wiki/Binomial_options_pricing_model)"
+        "[Read the original paper here](https://tv-prod.s3.amazonaws.com/documents%2Fnull-Binomial+Option+Pricing+_f-0943_.pdf)"
     )
 
 # Run the Binomial model page

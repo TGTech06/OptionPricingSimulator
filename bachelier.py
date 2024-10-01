@@ -144,7 +144,8 @@ def show_bachelier_page():
 
     # Link to full Bachelier model paper with more spacing
     st.markdown(
-        "[Read more about the Bachelier model here](https://en.wikipedia.org/wiki/Louis_Bachelier)"
+        "[Read more about the Bachelier model here](https://en.wikipedia.org/wiki/Bachelier_model)"
+        "[Read the original paper here](http://archive.numdam.org/article/ASENS_1900_3_17__21_0.pdf)"
     )
 
 # Run the Bachelier model page
